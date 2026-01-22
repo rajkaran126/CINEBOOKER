@@ -1,0 +1,11 @@
+<h2>Select Seats</h2>
+
+<div class="seat-grid">
+  <button
+    mat-raised-button
+    *ngFor="let seat of seats"
+    (click)="selectSeat(seat)"
+    [ngClass]="{ booked: seat.isBooked }">
+    {{ seat.number }}
+  </button>
+</div>

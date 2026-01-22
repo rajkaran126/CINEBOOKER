@@ -1,0 +1,27 @@
+<h2 class="heading">Now Showing</h2>
+
+<div class="movie-grid">
+  <mat-card *ngFor="let movie of movies" class="movie-card">
+
+    <img
+      mat-card-image
+      [src]="movie.poster"
+      [alt]="movie.title + ' poster'"
+    />
+
+    <mat-card-title>{{ movie.title }}</mat-card-title>
+
+    <mat-card-content>
+      <p>{{ movie.genre }} | {{ movie.language }}</p>
+      <p>⭐ {{ movie.rating }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary">
+        View Showtimes
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
+<!-- Movie list component displaying a grid of movies with posters, titles, genres, languages, ratings, and a button to view showtimes -->

@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "PVR Cinemas – Forum Mall",
+        "location": "Koramangala, Bengaluru",
+        "screens": 8,
+        "amenities": [
+            "Dolby Atmos",
+            "3D",
+            "Recliner Seats",
+            "Valet Parking"
+        ],
+        "isPremium": true
+    },
+    {
+        "id": 2,
+        "name": "INOX – Garuda Mall",
+        "location": "Magrath Road, Bengaluru",
+        "screens": 6,
+        "amenities": [
+            "IMAX",
+            "Dolby 7.1",
+            "Food Court"
+        ],
+        "isPremium": true
+    },
+    {
+        "id": 3,
+        "name": "Cinepolis – RMZ Galleria",
+        "location": "Yelahanka, Bengaluru",
+        "screens": 10,
+        "amenities": [
+            "Laser Projection",
+            "4DX",
+            "Premium Lounge"
+        ],
+        "isPremium": false
+    },
+    {
+        "id": 4,
+        "name": "SPI Cinemas – Orion Mall",
+        "location": "Rajajinagar, Bengaluru",
+        "screens": 5,
+        "amenities": [
+            "Dolby Atmos",
+            "Food Court"
+        ],
+        "isPremium": false
+    }
+]

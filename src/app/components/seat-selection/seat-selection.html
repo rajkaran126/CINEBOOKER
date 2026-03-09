@@ -1,11 +1,81 @@
-<h2>Select Seats</h2>
+<!-- Seat Selection Component: demonstrates [ngClass], [ngStyle], event handling -->
+<div class="seat-selection-container">
+  @if (loading) {
+  <div class="center-spinner"><mat-spinner diameter="60" color="accent"></mat-spinner></div>
+  }
 
-<div class="seat-grid">
-  <button
-    mat-raised-button
-    *ngFor="let seat of seats"
-    (click)="selectSeat(seat)"
-    [ngClass]="{ booked: seat.isBooked }">
-    {{ seat.number }}
-  </button>
+  @if (!loading && showtime) {
+  <div class="showtime-info-bar">
+    <button mat-button (click)="goBack()" class="back-btn">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="show-info">
+      <span><mat-icon>access_time</mat-icon> {{ showtime.showTime }}</span>
+      <span><mat-icon>calendar_today</mat-icon> {{ showtime.date | date:'mediumDate' }}</span>
+      <span><mat-icon>payments</mat-icon> From {{ showtime.ticketPrice | currency:'INR':'symbol':'1.0-0' }}</span>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item">
+      <div class="seat-demo available"></div> Available
+    </div>
+    <div class="legend-item">
+      <div class="seat-demo selected"></div> Selected
+    </div>
+    <div class="legend-item">
+      <div class="seat-demo booked"></div> Booked
+    </div>
+    <div class="legend-item">
+      <div class="seat-demo vip"></div> VIP Row
+    </div>
+    <div class="legend-item">
+      <div class="seat-demo premium-type"></div> Premium Row
+    </div>
+  </div>
+
+  <!-- Screen -->
+  <div class="screen-wrapper">
+    <div class="screen">SCREEN</div>
+  </div>
+
+  <!-- Seat Grid: *ngFor over rows and seats, [ngClass] for status, [ngStyle] for type -->
+  <div class="seat-grid">
+    @for (row of rows; track row) {
+    <div class="seat-row">
+      <span class="row-label">{{ row }}</span>
+      @for (seat of getRowSeats(row); track seat.id) {
+      <button class="seat" [ngClass]="{
+                'seat-available': seat.status === 'available',
+                'seat-selected': seat.status === 'selected',
+                'seat-booked': seat.status === 'booked',
+                'seat-vip': seat.type === 'vip',
+                'seat-premium': seat.type === 'premium'
+              }" [ngStyle]="{ 'cursor': seat.status === 'booked' ? 'not-allowed' : 'pointer' }"
+        [disabled]="seat.status === 'booked'" (click)="toggleSeat(seat)"
+        [title]="seat.id + ' - ' + seat.type + ' ₹' + seat.price">
+        {{ seat.number }}
+      </button>
+      }
+    </div>
+    }
+  </div>
+
+  <!-- Selection Summary -->
+  <div class="selection-summary" [ngStyle]="{'display': selectedSeats.length > 0 ? 'flex' : 'none'}">
+    <div class="selected-info">
+      <strong>Selected:</strong>
+      @for (s of selectedSeats; track s.id) {
+      <span class="seat-tag">{{ s.id }}</span>
+      }
+    </div>
+    <div class="total-info">
+      <strong>Total: {{ getTotalAmount() | currency:'INR':'symbol':'1.0-0' }}</strong>
+    </div>
+    <button mat-raised-button color="accent" (click)="proceedToBooking()">
+      <mat-icon>payment</mat-icon> Proceed to Book ({{ selectedSeats.length }} seats)
+    </button>
+  </div>
+  }
 </div>

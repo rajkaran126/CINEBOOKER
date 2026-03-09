@@ -1,15 +1,22 @@
-<mat-toolbar color="primary" class="navbar">
-  <span class="brand">
-    🎬 <strong>CineBooker</strong>
-  </span>
-
-  <span class="spacer"></span>
-
-  <button mat-button routerLink="/" routerLinkActive="active-link">
-    Movies
-  </button>
-
-  <button mat-button routerLink="/booking-summary" routerLinkActive="active-link">
-    My Bookings
-  </button>
-</mat-toolbar>
+<nav class="navbar-wrapper">
+  <mat-toolbar class="navbar-toolbar">
+    <a routerLink="/movies" class="brand">
+      <mat-icon>movie_filter</mat-icon>
+      <span>CineBooker</span>
+    </a>
+    <span class="spacer"></span>
+    <a mat-button routerLink="/movies" routerLinkActive="active-link">
+      <mat-icon>movie</mat-icon> Movies
+    </a>
+    <a mat-button routerLink="/theatres" routerLinkActive="active-link">
+      <mat-icon>theater_comedy</mat-icon> Theatres
+    </a>
+    <a mat-button routerLink="/my-bookings" routerLinkActive="active-link">
+      <mat-icon>confirmation_number</mat-icon> My Bookings
+    </a>
+  </mat-toolbar>
+  <!-- Global loading indicator using Angular Material progress bar and async pipe -->
+  @if (loading$ | async) {
+    <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+  }
+</nav>

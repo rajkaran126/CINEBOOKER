@@ -1,0 +1,212 @@
+.booking-summary-container {
+    padding: 2rem 1.5rem 5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.summary-card,
+.form-card {
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+}
+
+.booking-details {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #a0aec0;
+    flex-wrap: wrap;
+}
+
+.detail-row mat-icon {
+    color: #e94560;
+    font-size: 1.1rem;
+    width: 1.1rem;
+    height: 1.1rem;
+}
+
+.total-row {
+    color: #f5a623 !important;
+    font-size: 1.1rem;
+}
+
+.seat-chip {
+    background: rgba(233, 69, 96, 0.15) !important;
+    color: #e94560 !important;
+    border: 1px solid rgba(233, 69, 96, 0.4) !important;
+    height: 22px !important;
+    font-size: 0.75rem !important;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* ── Form field text visibility overrides (dark theme) ── */
+
+/* Input typed text */
+.user-form .mat-mdc-input-element,
+.user-form input.mat-mdc-input-element {
+    color: #ffffff !important;
+    caret-color: #e94560 !important;
+}
+
+/* Floating / placeholder label */
+.user-form .mdc-floating-label,
+.user-form .mat-mdc-floating-label,
+.user-form label.mdc-floating-label {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Label when focused (accent colour) */
+.user-form .mat-focused .mdc-floating-label,
+.user-form .mat-focused label.mdc-floating-label {
+    color: #e94560 !important;
+}
+
+/* Placeholder text (used before the label floats) */
+.user-form input::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Suffix icon colour */
+.user-form .mat-mdc-form-field-icon-suffix mat-icon,
+.user-form .mat-mdc-form-field-icon-suffix .mat-icon {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Outline border */
+.user-form .mdc-notched-outline__leading,
+.user-form .mdc-notched-outline__notch,
+.user-form .mdc-notched-outline__trailing {
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Outline on focus */
+.user-form .mat-focused .mdc-notched-outline__leading,
+.user-form .mat-focused .mdc-notched-outline__notch,
+.user-form .mat-focused .mdc-notched-outline__trailing {
+    border-color: #e94560 !important;
+}
+
+/* Error text */
+.user-form mat-error {
+    color: #fc8181 !important;
+}
+
+.confirm-btn {
+    background-color: #e94560 !important;
+    font-size: 1rem !important;
+    height: 48px !important;
+    margin-top: 0.5rem;
+}
+
+/* Confirmation screen */
+.confirmation-screen {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.tick-animation {
+    animation: pop 0.5s ease-out;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    80% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-icon {
+    font-size: 6rem !important;
+    width: 6rem !important;
+    height: 6rem !important;
+    color: #48bb78 !important;
+}
+
+.confirmation-screen h1 {
+    font-size: 2rem;
+    margin: 1rem 0 0.5rem;
+    color: #48bb78;
+}
+
+.booking-id {
+    color: #a0aec0;
+    margin-bottom: 1.5rem;
+}
+
+.booking-id strong {
+    color: #f5a623;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+.confirm-card {
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    text-align: left;
+}
+
+.confirm-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    color: #a0aec0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.confirm-row:last-child {
+    border-bottom: none;
+}
+
+.confirm-row mat-icon {
+    color: #e94560;
+}
+
+.confirm-row.total {
+    color: #f5a623;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.confirm-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}

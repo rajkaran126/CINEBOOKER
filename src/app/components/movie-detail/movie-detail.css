@@ -1,0 +1,113 @@
+.movie-detail-container {
+    padding: 2rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.detail-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.detail-poster {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.star-icon {
+    color: #f5a623;
+    font-size: 1.4rem;
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.rating-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f5a623;
+    margin-left: 4px;
+}
+
+.info-col {
+    padding: 0.5rem 0;
+}
+
+.back-btn {
+    margin-bottom: 1rem;
+    color: #a0aec0 !important;
+}
+
+.movie-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.meta-chips {
+    margin: 1rem 0;
+}
+
+mat-divider {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    margin: 1.2rem 0 !important;
+}
+
+h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e94560;
+    margin: 1.2rem 0 0.6rem;
+}
+
+.description-text {
+    color: #a0aec0;
+    line-height: 1.8;
+}
+
+.cast-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.cast-chip {
+    background: rgba(233, 69, 96, 0.15);
+    border: 1px solid rgba(233, 69, 96, 0.4);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: #e94560;
+}
+
+.release-date {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #a0aec0;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.book-btn {
+    font-size: 1rem !important;
+    padding: 0.5rem 2rem !important;
+    background-color: #e94560 !important;
+}
+
+@media (max-width: 768px) {
+    .detail-layout {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,21 +1,10 @@
 <app-navbar></app-navbar>
-
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>Book Movie Tickets Instantly 🎟️</h1>
-    <p>
-      Browse movies, choose seats, and enjoy a seamless theatre experience
-      with CineBooker.
-    </p>
-  </div>
-</section>
-
-<!-- Page Content -->
-<div class="main-container">
-  <router-outlet></router-outlet>
-</div>
+<router-outlet></router-outlet>
 
 <footer class="footer">
-  <p>© 2026 CineBooker | Movie Ticket Booking System</p>
+  <div class="footer-content">
+    <span><mat-icon style="font-size:1rem;vertical-align:middle">movie_filter</mat-icon> CineBooker</span>
+    <span>© 2026 Movie Ticket Booking System</span>
+    <span>Built with Angular &amp; TypeScript</span>
+  </div>
 </footer>

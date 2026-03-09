@@ -1,0 +1,178 @@
+[
+    {
+        "id": 1,
+        "movieId": 1,
+        "theatreId": 1,
+        "date": "2026-02-26",
+        "showTime": "10:00 AM",
+        "ticketPrice": 250,
+        "totalSeats": 100,
+        "availableSeats": 45,
+        "isSoldOut": false
+    },
+    {
+        "id": 2,
+        "movieId": 1,
+        "theatreId": 1,
+        "date": "2026-02-26",
+        "showTime": "2:00 PM",
+        "ticketPrice": 300,
+        "totalSeats": 100,
+        "availableSeats": 0,
+        "isSoldOut": true
+    },
+    {
+        "id": 3,
+        "movieId": 1,
+        "theatreId": 1,
+        "date": "2026-02-26",
+        "showTime": "6:00 PM",
+        "ticketPrice": 350,
+        "totalSeats": 100,
+        "availableSeats": 72,
+        "isSoldOut": false
+    },
+    {
+        "id": 4,
+        "movieId": 1,
+        "theatreId": 2,
+        "date": "2026-02-26",
+        "showTime": "11:00 AM",
+        "ticketPrice": 400,
+        "totalSeats": 120,
+        "availableSeats": 30,
+        "isSoldOut": false
+    },
+    {
+        "id": 5,
+        "movieId": 2,
+        "theatreId": 2,
+        "date": "2026-02-26",
+        "showTime": "10:30 AM",
+        "ticketPrice": 200,
+        "totalSeats": 80,
+        "availableSeats": 20,
+        "isSoldOut": false
+    },
+    {
+        "id": 6,
+        "movieId": 2,
+        "theatreId": 3,
+        "date": "2026-02-26",
+        "showTime": "3:00 PM",
+        "ticketPrice": 220,
+        "totalSeats": 80,
+        "availableSeats": 50,
+        "isSoldOut": false
+    },
+    {
+        "id": 7,
+        "movieId": 3,
+        "theatreId": 1,
+        "date": "2026-02-26",
+        "showTime": "9:00 AM",
+        "ticketPrice": 180,
+        "totalSeats": 100,
+        "availableSeats": 60,
+        "isSoldOut": false
+    },
+    {
+        "id": 8,
+        "movieId": 3,
+        "theatreId": 4,
+        "date": "2026-02-26",
+        "showTime": "5:30 PM",
+        "ticketPrice": 200,
+        "totalSeats": 90,
+        "availableSeats": 0,
+        "isSoldOut": true
+    },
+    {
+        "id": 9,
+        "movieId": 4,
+        "theatreId": 2,
+        "date": "2026-02-26",
+        "showTime": "1:00 PM",
+        "ticketPrice": 280,
+        "totalSeats": 120,
+        "availableSeats": 85,
+        "isSoldOut": false
+    },
+    {
+        "id": 10,
+        "movieId": 4,
+        "theatreId": 3,
+        "date": "2026-02-26",
+        "showTime": "7:00 PM",
+        "ticketPrice": 320,
+        "totalSeats": 100,
+        "availableSeats": 40,
+        "isSoldOut": false
+    },
+    {
+        "id": 11,
+        "movieId": 5,
+        "theatreId": 3,
+        "date": "2026-02-26",
+        "showTime": "12:00 PM",
+        "ticketPrice": 220,
+        "totalSeats": 80,
+        "availableSeats": 55,
+        "isSoldOut": false
+    },
+    {
+        "id": 12,
+        "movieId": 5,
+        "theatreId": 4,
+        "date": "2026-02-26",
+        "showTime": "4:00 PM",
+        "ticketPrice": 200,
+        "totalSeats": 80,
+        "availableSeats": 10,
+        "isSoldOut": false
+    },
+    {
+        "id": 13,
+        "movieId": 6,
+        "theatreId": 1,
+        "date": "2026-02-26",
+        "showTime": "11:30 AM",
+        "ticketPrice": 350,
+        "totalSeats": 100,
+        "availableSeats": 0,
+        "isSoldOut": true
+    },
+    {
+        "id": 14,
+        "movieId": 6,
+        "theatreId": 2,
+        "date": "2026-02-26",
+        "showTime": "6:30 PM",
+        "ticketPrice": 400,
+        "totalSeats": 120,
+        "availableSeats": 65,
+        "isSoldOut": false
+    },
+    {
+        "id": 15,
+        "movieId": 7,
+        "theatreId": 1,
+        "date": "2026-02-26",
+        "showTime": "9:30 AM",
+        "ticketPrice": 280,
+        "totalSeats": 100,
+        "availableSeats": 60,
+        "isSoldOut": false
+    },
+    {
+        "id": 16,
+        "movieId": 7,
+        "theatreId": 3,
+        "date": "2026-02-26",
+        "showTime": "5:00 PM",
+        "ticketPrice": 320,
+        "totalSeats": 120,
+        "availableSeats": 35,
+        "isSoldOut": false
+    }
+]

@@ -1,7 +1,115 @@
-<mat-card>
-  <mat-card-title>Booking Confirmed 🎉</mat-card-title>
-  <mat-card-content>
-    <p>Your movie tickets have been successfully booked.</p>
-    <p>Enjoy your show!</p>
-  </mat-card-content>
-</mat-card>
+<!-- Booking Summary Component: Reactive form with step-by-step MatStepper and confirmation dialog -->
+<div class="booking-summary-container">
+
+  @if (!bookingConfirmed) {
+  <h1 class="page-title"><mat-icon>confirmation_number</mat-icon> Complete Your Booking</h1>
+
+  <!-- Booking Details Summary Card -->
+  <mat-card class="summary-card">
+    <mat-card-header>
+      <mat-icon mat-card-avatar>movie</mat-icon>
+      <mat-card-title>{{ pending.movieTitle }}</mat-card-title>
+      <mat-card-subtitle>{{ pending.theatreName }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-divider></mat-divider>
+      <div class="booking-details">
+        <div class="detail-row">
+          <mat-icon>access_time</mat-icon>
+          <span>{{ pending.showTime }} — {{ pending.showDate | date:'fullDate' }}</span>
+        </div>
+        <div class="detail-row">
+          <mat-icon>event_seat</mat-icon>
+          <span>Seats: </span>
+          @for (seat of pending.seats; track seat) {
+          <mat-chip class="seat-chip">{{ seat }}</mat-chip>
+          }
+        </div>
+        <div class="detail-row total-row">
+          <mat-icon>payments</mat-icon>
+          <strong>Total: {{ pending.totalAmount | currency:'INR':'symbol':'1.0-0' }}</strong>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- User Details: Reactive Form with validation -->
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>Your Details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="userForm" (ngSubmit)="confirmBooking()" class="user-form">
+        <!-- Name Field -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="userName" placeholder="John Doe">
+          <mat-icon matSuffix>person</mat-icon>
+          @if (userForm.get('userName')?.touched && nameError) {
+          <mat-error>{{ nameError }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Email Field -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="userEmail" placeholder="john@email.com" type="email">
+          <mat-icon matSuffix>email</mat-icon>
+          @if (userForm.get('userEmail')?.touched && emailError) {
+          <mat-error>{{ emailError }}</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Phone Field -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Mobile Number</mat-label>
+          <input matInput formControlName="userPhone" placeholder="9876543210" maxlength="10">
+          <mat-icon matSuffix>phone</mat-icon>
+          @if (userForm.get('userPhone')?.touched && phoneError) {
+          <mat-error>{{ phoneError }}</mat-error>
+          }
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" type="submit" class="confirm-btn">
+          <mat-icon>check_circle</mat-icon> Confirm Booking
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  }
+
+  <!-- Confirmation Screen -->
+  @if (bookingConfirmed && confirmedBooking) {
+  <div class="confirmation-screen">
+    <div class="tick-animation">
+      <mat-icon class="success-icon">check_circle</mat-icon>
+    </div>
+    <h1>Booking Confirmed! 🎉</h1>
+    <p class="booking-id">Booking ID: <strong>{{ confirmedBooking.bookingId }}</strong></p>
+
+    <mat-card class="confirm-card">
+      <mat-card-content>
+        <div class="confirm-row"><mat-icon>movie</mat-icon> <span>{{ confirmedBooking.movieTitle }}</span></div>
+        <div class="confirm-row"><mat-icon>theater_comedy</mat-icon> <span>{{ confirmedBooking.theatreName }}</span>
+        </div>
+        <div class="confirm-row"><mat-icon>access_time</mat-icon> <span>{{ confirmedBooking.showTime }} — {{
+            confirmedBooking.showDate | date:'fullDate' }}</span></div>
+        <div class="confirm-row"><mat-icon>event_seat</mat-icon> <span>{{ confirmedBooking.seats.join(', ') }}</span>
+        </div>
+        <div class="confirm-row"><mat-icon>person</mat-icon> <span>{{ confirmedBooking.userName }}</span></div>
+        <div class="confirm-row total"><mat-icon>payments</mat-icon> <span>{{ confirmedBooking.totalAmount |
+            currency:'INR':'symbol':'1.0-0' }}</span></div>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="confirm-actions">
+      <button mat-raised-button color="primary" (click)="goToMyBookings()">
+        <mat-icon>confirmation_number</mat-icon> My Bookings
+      </button>
+      <button mat-raised-button color="accent" (click)="goToMovies()">
+        <mat-icon>movie</mat-icon> Browse More Movies
+      </button>
+    </div>
+  </div>
+  }
+</div>

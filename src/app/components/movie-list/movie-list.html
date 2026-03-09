@@ -1,27 +1,85 @@
-<h2 class="heading">Now Showing</h2>
+<!-- Movie List Component: Uses *ngFor, *ngIf, [ngStyle], [ngClass], FilterMoviesPipe, and Angular Material Cards -->
+<div class="movie-list-container">
+  <!-- Cosmic Hero Section -->
+  <div class="hero-section" (mousemove)="onMouseMove($event)">
+    <canvas #cosmicCanvas class="cosmic-canvas"></canvas>
+    <div class="hero-content">
+      <h1 class="page-title">Now Showing</h1>
+      <p class="page-subtitle">Browse the latest blockbusters and book your seats instantly</p>
+    </div>
+  </div>
 
-<div class="movie-grid">
-  <mat-card *ngFor="let movie of movies" class="movie-card">
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Search</mat-label>
+      <input matInput [(ngModel)]="searchTerm" placeholder="Search movies...">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
 
-    <img
-      mat-card-image
-      [src]="movie.poster"
-      [alt]="movie.title + ' poster'"
-    />
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Genre</mat-label>
+      <mat-select [(ngModel)]="selectedGenre">
+        @for (g of genres; track g) {
+        <mat-option [value]="g">{{ g }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
 
-    <mat-card-title>{{ movie.title }}</mat-card-title>
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Language</mat-label>
+      <mat-select [(ngModel)]="selectedLanguage">
+        @for (l of languages; track l) {
+        <mat-option [value]="l">{{ l }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-    <mat-card-content>
-      <p>{{ movie.genre }} | {{ movie.language }}</p>
-      <p>⭐ {{ movie.rating }}</p>
-    </mat-card-content>
+  <!-- Loading Spinner -->
+  @if (loading) {
+  <div class="center-spinner">
+    <mat-spinner diameter="60" color="accent"></mat-spinner>
+  </div>
+  }
 
-    <mat-card-actions>
-      <button mat-raised-button color="primary">
-        View Showtimes
-      </button>
-    </mat-card-actions>
+  <!-- Movie Grid: *ngFor over filteredMovies -->
+  @if (!loading) {
+  <div class="movie-grid">
+    @for (movie of filteredMovies; track movie.id) {
+    <mat-card class="movie-card" [ngClass]="'genre-' + getCardClass(movie.genre)">
+      <img mat-card-image [src]="movie.poster" [alt]="movie.title + ' poster'" class="movie-poster" />
+      <div class="movie-badge" [ngStyle]="{'background': movie.rating >= 4.5 ? '#f5a623' : '#666'}">
+        ⭐ {{ movie.rating }}
+      </div>
 
-  </mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle>{{ movie.genre }} | {{ movie.language }} | {{ movie.duration }} min</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p class="movie-description">{{ movie.description | slice:0:80 }}...</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="viewDetail(movie.id)">
+          <mat-icon>info</mat-icon> Details
+        </button>
+        <button mat-raised-button color="accent" (click)="viewShowtimes(movie.id)">
+          <mat-icon>event_seat</mat-icon> Book Now
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </div>
+
+  <!-- No results fallback using *ngIf equivalent -->
+  @if (filteredMovies.length === 0) {
+  <div class="no-results">
+    <mat-icon>movie_filter</mat-icon>
+    <p>No movies match your filters. Try different options!</p>
+  </div>
+  }
+  }
 </div>
-<!-- Movie list component displaying a grid of movies with posters, titles, genres, languages, ratings, and a button to view showtimes -->

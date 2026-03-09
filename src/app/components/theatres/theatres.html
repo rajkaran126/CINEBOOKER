@@ -1,0 +1,47 @@
+<!-- Theatres Component: Uses PremiumTheatreDirective and MatChips -->
+<div class="theatres-container">
+    <div class="page-header">
+        <h1 class="page-title"><mat-icon>theater_comedy</mat-icon> Theatres</h1>
+        <p class="page-subtitle">Discover premium and standard theatres near you</p>
+    </div>
+
+    @if (loading) {
+    <div class="center-spinner"><mat-spinner diameter="60" color="accent"></mat-spinner></div>
+    }
+
+    @if (!loading) {
+    <div class="theatres-grid">
+        @for (theatre of theatres; track theatre.id) {
+        <mat-card class="theatre-card" [appPremiumTheatre]="theatre.isPremium">
+            <mat-card-header>
+                <mat-icon mat-card-avatar>theater_comedy</mat-icon>
+                <mat-card-title>{{ theatre.name }}</mat-card-title>
+                <mat-card-subtitle>
+                    <mat-icon>location_on</mat-icon> {{ theatre.location }}
+                </mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <p class="screens-info">
+                    <mat-icon>screen_share</mat-icon> {{ theatre.screens }} Screens
+                    @if (theatre.isPremium) {
+                    <mat-chip class="premium-badge">⭐ PREMIUM</mat-chip>
+                    }
+                </p>
+                <div class="amenities">
+                    @for (amenity of theatre.amenities; track amenity) {
+                    <mat-chip class="amenity-chip">{{ amenity }}</mat-chip>
+                    }
+                </div>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button mat-raised-button color="accent" (click)="goToMovies()">
+                    <mat-icon>movie</mat-icon> Book Tickets
+                </button>
+            </mat-card-actions>
+        </mat-card>
+        }
+    </div>
+    }
+</div>

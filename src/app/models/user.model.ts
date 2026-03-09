@@ -1,7 +1,7 @@
-import { Person } from './person.model';
-
-export class User extends Person {
-  userId!: number;
-  phone!: string;
+// TypeScript interface and data types to define the structure of a User object
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
 }
-//inherits properties of Person class to define the structure of a User object

@@ -1,0 +1,55 @@
+.theatres-container {
+    padding: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.theatres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.theatre-card {
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.theatre-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(233, 69, 96, 0.2) !important;
+}
+
+.screens-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #a0aec0;
+    margin: 1rem 0 0.75rem;
+    font-size: 0.95rem;
+}
+
+.screens-info mat-icon {
+    color: #e94560;
+}
+
+.premium-badge {
+    background: rgba(245, 166, 35, 0.15) !important;
+    color: #f5a623 !important;
+    border: 1px solid #f5a623 !important;
+    font-size: 0.7rem !important;
+    height: 20px !important;
+}
+
+.amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.amenity-chip {
+    background: rgba(233, 69, 96, 0.1) !important;
+    color: #a0aec0 !important;
+    border: 1px solid rgba(233, 69, 96, 0.2) !important;
+    font-size: 0.75rem !important;
+    height: 24px !important;
+}

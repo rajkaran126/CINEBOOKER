@@ -1,53 +1,40 @@
-.hero {
-  background: linear-gradient(
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.6)
-    ),
-    url('https://images.unsplash.com/photo-1581905764498-f1b60bae941a');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  padding: 80px 20px;
-  text-align: center;
+/* Cosmic canvas — fixed, full page, behind everything */
+.cosmic-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
 }
 
-.hero-content {
-  max-width: 700px;
-  margin: auto;
-}
-
-.hero h1 {
-  font-size: 40px;
-  margin-bottom: 15px;
-}
-
-.hero p {
-  font-size: 18px;
-  opacity: 0.9;
-}
-
-.hero-actions {
-  margin-top: 25px;
-}
-
-.hero-actions button {
-  margin: 10px;
-}
-
-.main-container {
-  padding: 30px;
-  background-color: #f5f5f5;
-  min-height: 400px;
-}
-
+/* Everything above the canvas */
+app-navbar,
+router-outlet+*,
 .footer {
-  background-color: #222;
-  color: #ccc;
-  text-align: center;
-  padding: 12px;
-  font-size: 14px;
+  position: relative;
+  z-index: 1;
 }
-.footer a {
-  color: #ff4081;
-  text-decoration: none;
+
+/* Footer */
+.footer {
+  background: rgba(10, 10, 15, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 1.5rem;
+  margin-top: 3rem;
+  backdrop-filter: blur(4px);
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: #4a5568;
+  font-size: 0.85rem;
 }

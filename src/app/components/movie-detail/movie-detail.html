@@ -1,6 +1,67 @@
-<h2>{{ movie.title }}</h2>
+<!-- Movie Detail Component: shows full movie info, cast, and showtimes button -->
+<div class="movie-detail-container">
+    @if (loading) {
+    <div class="center-spinner"><mat-spinner diameter="60" color="accent"></mat-spinner></div>
+    }
 
-<p>Cast: {{ movie.cast }}</p>
-<p>Duration: {{ movie.duration }} mins</p>
-<p>Rating: {{ movie.rating }}</p>
-<!-- Movie detail component displaying movie title, cast, duration, and rating -->
+    @if (!loading && movie) {
+    <div class="detail-layout">
+        <!-- Poster Column -->
+        <div class="poster-col">
+            <img [src]="movie.poster" [alt]="movie.title" class="detail-poster" />
+            <div class="rating-row">
+                @for (star of getStars(movie.rating); track star) {
+                <mat-icon class="star-icon">star</mat-icon>
+                }
+                <span class="rating-text">{{ movie.rating }}/5</span>
+            </div>
+        </div>
+
+        <!-- Info Column -->
+        <div class="info-col">
+            <button mat-button (click)="goBack()" class="back-btn">
+                <mat-icon>arrow_back</mat-icon> All Movies
+            </button>
+
+            <h1 class="movie-title">{{ movie.title }}</h1>
+
+            <div class="meta-chips">
+                <mat-chip-set>
+                    <mat-chip>{{ movie.genre }}</mat-chip>
+                    <mat-chip>{{ movie.language }}</mat-chip>
+                    <mat-chip>{{ movie.duration }} min</mat-chip>
+                    <mat-chip [ngStyle]="{'background': '#f5a623', 'color': '#000'}">⭐ {{ movie.rating }}</mat-chip>
+                </mat-chip-set>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <h3>Description</h3>
+            <p class="description-text">{{ movie.description }}</p>
+
+            <h3>Cast</h3>
+            <div class="cast-list">
+                @for (actor of movie.cast; track actor) {
+                <span class="cast-chip">{{ actor }}</span>
+                }
+            </div>
+
+            <p class="release-date">
+                <mat-icon>calendar_today</mat-icon> Release Date: {{ movie.releaseDate | date:'longDate' }}
+            </p>
+
+            <button mat-raised-button color="accent" class="book-btn" (click)="viewShowtimes()">
+                <mat-icon>event_seat</mat-icon> View Showtimes & Book
+            </button>
+        </div>
+    </div>
+    }
+
+    @if (!loading && !movie) {
+    <div class="no-results">
+        <mat-icon>movie_filter</mat-icon>
+        <p>Movie not found.</p>
+        <button mat-raised-button color="primary" (click)="goBack()">Go Back</button>
+    </div>
+    }
+</div>

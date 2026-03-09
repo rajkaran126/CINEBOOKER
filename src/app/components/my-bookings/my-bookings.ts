@@ -39,4 +39,26 @@ export class MyBookingsComponent implements OnInit {
     browseMovies(): void {
         this.router.navigate(['/movies']);
     }
+
+    onCardMouseMove(e: MouseEvent): void {
+        const wrapper = e.currentTarget as HTMLElement;
+        const card = wrapper.querySelector('.booking-card') as HTMLElement | null;
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        const dx = (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2);
+        const dy = (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2);
+        card.style.setProperty('--rx', `${dy * -10}deg`);
+        card.style.setProperty('--ry', `${dx *  10}deg`);
+        card.style.setProperty('--hx', `${((e.clientX - rect.left) / rect.width  * 100).toFixed(1)}%`);
+        card.style.setProperty('--hy', `${((e.clientY - rect.top)  / rect.height * 100).toFixed(1)}%`);
+        card.classList.add('is-hovered');
+    }
+
+    onCardMouseLeave(e: MouseEvent): void {
+        const card = (e.currentTarget as HTMLElement).querySelector('.booking-card') as HTMLElement | null;
+        if (!card) return;
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        card.classList.remove('is-hovered');
+    }
 }

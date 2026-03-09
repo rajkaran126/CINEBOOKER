@@ -1,180 +1,134 @@
-/* ── Hero / Cosmic Section ─────────────────────────────────────── */
+/* ── Movie List ─────────────────────────────────────────────────── */
 .movie-list-container {
-  padding: 0 0 3rem;
+  padding: 0 0 5rem;
   max-width: 100%;
   margin: 0 auto;
-}
-
-.hero-section {
   position: relative;
-  width: 100%;
-  height: 280px;
-  background: #050512;
-  overflow: hidden;
-  cursor: crosshair;
-  margin-bottom: 2rem;
+  z-index: 1;
 }
 
-.cosmic-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.hero-content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 10;
+/* ── Hero Header (no canvas — uses app-level bg3d canvas) ────────── */
+.hero-header {
+  text-align: center;
+  padding: 4rem 1rem 2.5rem;
+  position: relative;
 }
 
 .page-title {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
   font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 2px;
-  text-shadow: 0 0 24px rgba(233, 69, 96, 0.8), 0 0 50px rgba(159, 122, 234, 0.5);
-  margin: 0 0 0.5rem;
-  animation: titlePulse 3s ease-in-out infinite;
+  color: #e8f0fe;
+  letter-spacing: 3px;
+  text-shadow:
+    0 0 20px rgba(0, 212, 255, 0.9),
+    0 0 50px rgba(123, 47, 255, 0.5),
+    0 2px 4px rgba(0,0,0,0.6);
+  margin: 0 0 0.7rem;
+  animation: titlePulse 3.5s ease-in-out infinite;
 }
 
-.title-icon {
-  margin-right: 0.4rem;
+@keyframes titlePulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(0,212,255,0.9), 0 0 50px rgba(123,47,255,0.5), 0 2px 4px rgba(0,0,0,0.6); }
+  50%       { text-shadow: 0 0 40px rgba(0,212,255,1),   0 0 90px rgba(123,47,255,0.9), 0 2px 4px rgba(0,0,0,0.6); }
 }
 
 .page-subtitle {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.65);
-  letter-spacing: 1px;
+  color: rgba(180, 210, 255, 0.65);
+  letter-spacing: 1.5px;
   margin: 0;
 }
 
-@keyframes titlePulse {
-
-  0%,
-  100% {
-    text-shadow: 0 0 24px rgba(233, 69, 96, 0.8), 0 0 50px rgba(159, 122, 234, 0.5);
-  }
-
-  50% {
-    text-shadow: 0 0 40px rgba(233, 69, 96, 1), 0 0 80px rgba(159, 122, 234, 0.8);
-  }
-}
-
-/* Inner content area gets padding */
-.filter-bar {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.movie-grid {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-/* keep loading/empty state centered */
-.loading-container,
-.empty-state {
-  padding: 0 1.5rem;
-}
-
+/* ── Filter Bar ─────────────────────────────────────────────────── */
 .filter-bar {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 1rem 0 1.5rem;
+  padding: 0 1.5rem 1.5rem;
 }
 
-.filter-field {
-  min-width: 180px;
-}
-
-/* Override mat-form-field dark theme */
-.filter-bar .mat-mdc-form-field {
-  color: white;
-}
-
+.filter-field { min-width: 180px; }
+.filter-bar .mat-mdc-form-field { color: #e8f0fe; }
 .mat-mdc-text-field-wrapper {
-  background: #1a1a2e !important;
+  background: rgba(6, 14, 34, 0.80) !important;
+  backdrop-filter: blur(10px);
 }
 
+/* ── Movie Grid ─────────────────────────────────────────────────── */
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+  gap: 1.8rem;
+  padding: 0 1.5rem;
 }
 
+/* ── Card wrapper (handles the tilt events) ─────────────────────── */
+.movie-card-wrapper {
+  perspective: 900px;
+}
+
+/* ── Movie Cards — 3D tilt ──────────────────────────────────────── */
 .movie-card {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform:
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+  will-change: transform;
+  background: rgba(6, 14, 34, 0.82) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(0, 212, 255, 0.10) !important;
 }
 
-.movie-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(233, 69, 96, 0.25) !important;
+/* Dynamic inner highlight */
+.movie-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--hx, 50%) var(--hy, 0%),
+    rgba(0, 212, 255, 0.08) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.movie-card.is-hovered {
+  box-shadow:
+    0 25px 55px rgba(0, 212, 255, 0.20),
+    0 10px 20px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 212, 255, 0.18) !important;
 }
 
 .movie-poster {
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
-  display: block;
+  width: 100%; height: 360px;
+  object-fit: cover; display: block;
 }
 
 .movie-badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 12px; right: 12px;
   padding: 4px 10px;
   border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.85rem; font-weight: 600;
   color: #000;
+  z-index: 3;
 }
 
-.mat-mdc-card-title {
-  color: white !important;
-  font-size: 1.1rem !important;
-  font-weight: 600 !important;
-}
+.mat-mdc-card-title  { color: #e8f0fe !important; font-size: 1.1rem !important; font-weight: 600 !important; }
+.mat-mdc-card-subtitle { color: #8899bb !important; }
+.movie-description   { color: #8899bb; font-size: 0.875rem; margin: 0.5rem 0; }
 
-.mat-mdc-card-subtitle {
-  color: #a0aec0 !important;
-}
-
-.movie-description {
-  color: #a0aec0;
-  font-size: 0.875rem;
-  margin: 0.5rem 0;
-}
-
-/* Genre-based card top border accents */
-.genre-sci-fi {
-  border-top: 3px solid #4299e1 !important;
-}
-
-.genre-action {
-  border-top: 3px solid #e94560 !important;
-}
-
-.genre-thriller {
-  border-top: 3px solid #9f7aea !important;
-}
-
-.genre-drama {
-  border-top: 3px solid #68d391 !important;
-}
-
-.genre-comedy {
-  border-top: 3px solid #f6e05e !important;
-}
+/* ── Genre border accents ───────────────────────────────────────── */
+.genre-sci-fi    { border-top: 3px solid #00D4FF !important; }
+.genre-action    { border-top: 3px solid #FF006E !important; }
+.genre-thriller  { border-top: 3px solid #7B2FFF !important; }
+.genre-drama     { border-top: 3px solid #00FFC8 !important; }
+.genre-comedy    { border-top: 3px solid #FFD600 !important; }

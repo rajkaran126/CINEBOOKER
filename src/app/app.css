@@ -1,5 +1,5 @@
-/* Cosmic canvas — fixed, full page, behind everything */
-.cosmic-bg {
+/* 3D canvas — fixed, full page, behind everything */
+#bg3d {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,19 +12,21 @@
 
 /* Everything above the canvas */
 app-navbar,
-router-outlet+*,
+router-outlet + *,
 .footer {
   position: relative;
   z-index: 1;
 }
 
-/* Footer */
+/* ── Footer ────────────────────────────────────────────────── */
 .footer {
-  background: rgba(10, 10, 15, 0.7);
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(1, 10, 22, 0.78);
+  border-top: 1px solid rgba(0, 212, 255, 0.15);
   padding: 1.5rem;
   margin-top: 3rem;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 -4px 40px rgba(0, 212, 255, 0.07);
 }
 
 .footer-content {
@@ -35,6 +37,6 @@ router-outlet+*,
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  color: #4a5568;
+  color: rgba(160, 174, 192, 0.8);
   font-size: 0.85rem;
 }

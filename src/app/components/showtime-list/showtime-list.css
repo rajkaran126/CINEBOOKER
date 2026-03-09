@@ -16,7 +16,7 @@
 .showtime-table {
     width: 100%;
     min-width: 600px;
-    background: #1a1a2e !important;
+    background: rgba(6, 14, 34, 0.85) !important;
 }
 
 .theatre-cell {
@@ -27,20 +27,21 @@
 }
 
 .theatre-cell strong {
-    color: white;
+    color: #e8f0fe;
+    font-weight: 600;
 }
 
 .theatre-cell small {
-    color: #a0aec0;
+    color: #8899bb;
     font-size: 0.8rem;
 }
 
 .premium-chip {
-    background: rgba(245, 166, 35, 0.15) !important;
-    color: #f5a623 !important;
+    background: rgba(255, 214, 0, 0.10) !important;
+    color: #FFD600 !important;
     font-size: 0.7rem !important;
     height: 20px !important;
-    border: 1px solid #f5a623 !important;
+    border: 1px solid rgba(255, 214, 0, 0.35) !important;
     margin-top: 4px;
 }
 
@@ -56,7 +57,7 @@
     font-size: 1rem;
     width: 1rem;
     height: 1rem;
-    color: #e94560;
+    color: #00D4FF;
 }
 
 .time-cell small {

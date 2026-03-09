@@ -4,15 +4,18 @@ Cinebooker is a modern, responsive Angular application for browsing movies, sele
 
 ##  Features
 
-- **Movie Booking Flow**: seamless journey from selecting a movie to confirming seats.
-- **Dynamic Theatres & Showtimes**: integrated data for multiple theatres.
-- **Interactive Seat Selection**: visually choose your preferred seats.
-- **Responsive Design**: built to work beautifully across desktop and mobile devices.
+- **3D Neon UI**: A complete visual overhaul featuring a futuristic dark moden, cyan/violet neon glows, and glassmorphism cards.
+- **Interactive 3D Background**: A site-wide 3D particle network animation that responds to mouse movement, giving a highly dynamic and cinematic feel.
+- **Dynamic 3D Hover Effects**: Movie and theatre cards physically tilt in 3D-space based on cursor position.
+- **Movie Booking Flow**: Seamless journey from selecting a movie to confirming seats.
+- **Dynamic Theatres & Showtimes**: Integrated data for multiple theatres.
+- **Interactive Seat Selection**: Visually choose your preferred seats in a neon-themed theatre layout.
 
 ##  Tech Stack
 
-- **Framework**: [Angular](https://github.com/angular/angular-cli) (version 21.1.0)
-- **Styling**: Custom CSS with modern UI/UX principles
+- **Framework**: [Angular](https://github.com/angular/angular-cli) (version 17+)
+- **Styling**: Custom CSS with advanced 3D transforms (`preserve-3d`, `perspective`), glassmorphism, and CSS variables.
+- **Animation**: Pure HTML5 Canvas 3D particle rendering without external libraries.
 - **Testing**: [Vitest](https://vitest.dev/) for unit testing
 
 ##  Local Development

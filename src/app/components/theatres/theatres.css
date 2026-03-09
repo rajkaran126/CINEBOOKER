@@ -1,55 +1,127 @@
+/* ── Theatres Page ───────────────────────────────────────────────── */
 .theatres-container {
-    padding: 1.5rem;
-    max-width: 1100px;
-    margin: 0 auto;
+  padding: 0 0 5rem;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
+/* Hero header — same style as movie-list */
+.page-header {
+  text-align: center;
+  padding: 4rem 1rem 2.5rem;
+}
+
+.page-title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: #e8f0fe;
+  letter-spacing: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-shadow:
+    0 0 20px rgba(0, 212, 255, 0.9),
+    0 0 50px rgba(123, 47, 255, 0.5);
+  animation: titlePulse 3.5s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(0,212,255,0.9), 0 0 50px rgba(123,47,255,0.5); }
+  50%       { text-shadow: 0 0 40px rgba(0,212,255,1),   0 0 90px rgba(123,47,255,0.9); }
+}
+
+.page-subtitle {
+  color: rgba(180, 210, 255, 0.65);
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────── */
 .theatres-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.8rem;
+  padding: 0 1.5rem;
 }
 
+/* ── Card wrapper for 3D tilt ────────────────────────────────────── */
+.theatre-card-wrapper {
+  perspective: 900px;
+}
+
+/* ── Theatre Cards — glassmorphism + 3D tilt ─────────────────────── */
 .theatre-card {
-    transition: transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transform:
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+  will-change: transform;
+  background: rgba(6, 14, 34, 0.82) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(0, 212, 255, 0.10) !important;
 }
 
-.theatre-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(233, 69, 96, 0.2) !important;
+.theatre-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--hx, 50%) var(--hy, 0%),
+    rgba(0, 212, 255, 0.08) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
 }
 
+.theatre-card.is-hovered {
+  box-shadow:
+    0 25px 55px rgba(0, 212, 255, 0.20),
+    0 10px 20px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 212, 255, 0.18) !important;
+}
+
+/* Premium card gets a gold top border */
+.theatre-card.premium-theatre {
+  border-top: 3px solid #FFD600 !important;
+}
+
+/* ── Card content ────────────────────────────────────────────────── */
 .screens-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #a0aec0;
-    margin: 1rem 0 0.75rem;
-    font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8899bb;
+  margin: 1rem 0 0.75rem;
+  font-size: 0.95rem;
 }
 
-.screens-info mat-icon {
-    color: #e94560;
-}
+.screens-info mat-icon { color: #00D4FF; }
 
 .premium-badge {
-    background: rgba(245, 166, 35, 0.15) !important;
-    color: #f5a623 !important;
-    border: 1px solid #f5a623 !important;
-    font-size: 0.7rem !important;
-    height: 20px !important;
+  background: rgba(255, 214, 0, 0.12) !important;
+  color: #FFD600 !important;
+  border: 1px solid rgba(255, 214, 0, 0.35) !important;
+  font-size: 0.7rem !important;
+  height: 20px !important;
 }
 
-.amenities {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
+.amenities { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
 .amenity-chip {
-    background: rgba(233, 69, 96, 0.1) !important;
-    color: #a0aec0 !important;
-    border: 1px solid rgba(233, 69, 96, 0.2) !important;
-    font-size: 0.75rem !important;
-    height: 24px !important;
+  background: rgba(0, 212, 255, 0.08) !important;
+  color: #8899bb !important;
+  border: 1px solid rgba(0, 212, 255, 0.18) !important;
+  font-size: 0.75rem !important;
+  height: 24px !important;
 }

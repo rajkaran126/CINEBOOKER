@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
+
 .navbar-wrapper {
   position: sticky;
   top: 0;
@@ -5,8 +7,13 @@
 }
 
 .navbar-toolbar {
-  background: linear-gradient(90deg, #0a0a0f 0%, #1a1a2e 100%) !important;
-  border-bottom: 1px solid rgba(233, 69, 96, 0.3);
+  background: rgba(1, 10, 22, 0.60) !important;
+  backdrop-filter: blur(22px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(200%) !important;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.18) !important;
+  box-shadow:
+    0 4px 30px rgba(0, 212, 255, 0.10),
+    0 1px 0 rgba(255, 255, 255, 0.03) inset !important;
   padding: 0 1.5rem;
   height: 64px;
 }
@@ -16,41 +23,59 @@
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-  color: #e94560;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  color: #00D4FF;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: brandGlow 3.5s ease-in-out infinite, brandSpread 6s ease-in-out infinite;
+}
+
+@keyframes brandGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.7)) drop-shadow(0 0 20px rgba(0, 212, 255, 0.25));
+    text-shadow: 0 0 14px rgba(0, 212, 255, 0.8);
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(0, 212, 255, 1)) drop-shadow(0 0 40px rgba(123, 47, 255, 0.6));
+    text-shadow: 0 0 28px rgba(0, 212, 255, 1), 0 0 60px rgba(123, 47, 255, 0.7);
+  }
+}
+
+@keyframes brandSpread {
+  0%, 100% { letter-spacing: 3px; }
+  50%       { letter-spacing: 6px; }
 }
 
 .brand mat-icon {
   font-size: 1.8rem;
   width: 1.8rem;
   height: 1.8rem;
-  color: #e94560;
+  color: #00D4FF;
 }
 
-.spacer {
-  flex: 1;
-}
+.spacer { flex: 1; }
 
 .navbar-toolbar a[mat-button] {
-  color: #a0aec0 !important;
+  color: rgba(136, 153, 187, 0.9) !important;
   font-size: 0.9rem;
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  transition: color 0.2s;
+  transition: color 0.2s, text-shadow 0.2s;
+  letter-spacing: 0.3px;
 }
 
 .navbar-toolbar a[mat-button]:hover {
-  color: #e94560 !important;
+  color: #00D4FF !important;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
 }
 
 .active-link {
-  color: #e94560 !important;
-  border-bottom: 2px solid #e94560;
+  color: #00D4FF !important;
+  border-bottom: 2px solid #00D4FF;
+  text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
 }
 
-mat-progress-bar {
-  height: 3px !important;
-}
+mat-progress-bar { height: 3px !important; }

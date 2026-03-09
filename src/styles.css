@@ -1,121 +1,111 @@
-/* Global Dark Cinematic Theme */
+/* ─── Global — Neon Geometric Theme ────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-
-
 :root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-card: #1a1a2e;
-  --bg-card-hover: #1e1e35;
-  --accent: #e94560;
-  --accent-gold: #f5a623;
-  --text-primary: #ffffff;
-  --text-secondary: #a0aec0;
-  --border: rgba(255, 255, 255, 0.08);
-  --radius: 12px;
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  /* Brand palette — neon cyan / electric blue / violet */
+  --accent:        #00D4FF;
+  --accent-2:      #7B2FFF;
+  --accent-pink:   #FF006E;
+  --accent-gold:   #FFD600;
+  --accent-green:  #00FFC8;
+
+  /* Backgrounds — deep navy */
+  --bg-primary:    #010C18;
+  --bg-secondary:  #060E22;
+  --bg-card:       rgba(6, 14, 34, 0.82);
+  --bg-card-hover: rgba(12, 22, 50, 0.92);
+
+  --text-primary:  #e8f0fe;
+  --text-secondary:#8899bb;
+  --border:        rgba(0, 212, 255, 0.10);
+  --radius:        14px;
+  --shadow:        0 8px 32px rgba(0, 0, 0, 0.7);
+
+  /* 3D helpers */
+  --depth-1: translateZ(2px);
+  --depth-2: translateZ(6px);
+  --depth-3: translateZ(12px);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-html,
-body {
+html, body {
   height: 100%;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'Inter', 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-
-
-/* Material theme overrides for dark mode */
+/* ── Material cards — neon glassmorphism ──────────────────────── */
 .mat-mdc-card {
-  background-color: var(--bg-card) !important;
+  background: var(--bg-card) !important;
   color: var(--text-primary) !important;
   border: 1px solid var(--border) !important;
   border-radius: var(--radius) !important;
+  backdrop-filter: blur(14px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Global card title/subtitle — applies to all pages */
+.mat-mdc-card-title {
+  color: var(--text-primary) !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+.mat-mdc-card-subtitle {
+  color: var(--text-secondary) !important;
 }
 
 .mat-mdc-raised-button.mat-accent,
 .mdc-button--raised.mat-accent {
-  background-color: var(--accent) !important;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important;
+  box-shadow: 0 0 18px rgba(0, 212, 255, 0.35) !important;
 }
 
-/* Utility classes */
+/* ── Utility ─────────────────────────────────────────────────── */
 .center-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
+  display: flex; justify-content: center; align-items: center; height: 200px;
 }
 
-.page-header {
-  text-align: center;
-  padding: 2rem 1rem 1.5rem;
-}
+.page-header { text-align: center; padding: 2rem 1rem 1.5rem; }
 
 .page-title {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2rem; font-weight: 700;
   color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
 }
 
-.page-subtitle {
-  color: var(--text-secondary);
-  margin-top: 0.5rem;
-}
-
-.back-btn {
-  color: var(--text-secondary) !important;
-}
+.page-subtitle { color: var(--text-secondary); margin-top: 0.5rem; }
+.back-btn      { color: var(--text-secondary) !important; }
 
 .no-results {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 4rem;
-  color: var(--text-secondary);
-  gap: 1rem;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 4rem;
+  color: var(--text-secondary); gap: 1rem;
 }
+.no-results mat-icon { font-size: 4rem; width: 4rem; height: 4rem; }
 
-.no-results mat-icon {
-  font-size: 4rem;
-  width: 4rem;
-  height: 4rem;
-}
+/* ── Snackbar ────────────────────────────────────────────────── */
+.success-snackbar { background: #0d4e21 !important; color: white !important; }
 
-/* Success snackbar */
-.success-snackbar {
-  background: #1b5e20 !important;
-  color: white !important;
-}
+/* ── Material Table ──────────────────────────────────────────── */
+.mat-mdc-table     { background: var(--bg-card) !important; }
+.mat-mdc-header-row { background: var(--bg-secondary) !important; }
+.mdc-data-table__header-cell { color: var(--accent) !important; font-weight: 600 !important; }
+.mat-mdc-row:hover { background: var(--bg-card-hover) !important; }
 
-/* Material overrides for dark theme */
-.mat-mdc-table {
-  background: var(--bg-card) !important;
-}
-
-.mat-mdc-header-row {
-  background: var(--bg-secondary) !important;
-}
-
-.mdc-data-table__header-cell {
-  color: var(--accent-gold) !important;
-  font-weight: 600 !important;
-}
-
-.mat-mdc-row:hover {
-  background: var(--bg-card-hover) !important;
+/* ── Reusable glass panel ────────────────────────────────────── */
+.glass-panel {
+  background: rgba(6, 14, 34, 0.68);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(0, 212, 255, 0.09);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }

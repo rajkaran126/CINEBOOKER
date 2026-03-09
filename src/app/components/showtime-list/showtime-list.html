@@ -17,73 +17,47 @@
   }
 
   @if (!loading) {
-  <!-- MatTable for showtime listings -->
-  <div class="table-wrapper">
-    <table mat-table [dataSource]="showtimeRows" class="showtime-table mat-elevation-z2">
+  <!-- CSS Grid Showtime Cards (Replacing mat-table to fix layout/text visibility issues) -->
+  <div class="showtimes-grid">
+    @for (row of showtimeRows; track row.id) {
+    <div class="showtime-card glass-panel" [appPremiumTheatre]="false">
+      <div class="card-section theatre-info">
+        <h3 class="theatre-name">{{ row.theatreName }}</h3>
+        <p class="theatre-location">{{ row.theatreLocation }}</p>
+        @if (row.isPremium) {
+        <span class="premium-badge">⭐ PREMIUM</span>
+        }
+      </div>
 
-      <!-- Theatre Column -->
-      <ng-container matColumnDef="theatre">
-        <th mat-header-cell *matHeaderCellDef>Theatre</th>
-        <td mat-cell *matCellDef="let row">
-          <div class="theatre-cell" [appPremiumTheatre]="row.isPremium">
-            <strong>{{ row.theatreName }}</strong>
-            <small>{{ row.theatreLocation }}</small>
-            @if (row.isPremium) {
-            <mat-chip class="premium-chip">⭐ PREMIUM</mat-chip>
-            }
-          </div>
-        </td>
-      </ng-container>
+      <div class="card-section time-info">
+        <div class="time-block">
+          <mat-icon>access_time</mat-icon>
+          <span class="time-text">{{ row.showTime }}</span>
+        </div>
+        <div class="date-text">{{ row.date | date:'mediumDate' }}</div>
+      </div>
 
-      <!-- Showtime Column -->
-      <ng-container matColumnDef="showTime">
-        <th mat-header-cell *matHeaderCellDef>Show Time</th>
-        <td mat-cell *matCellDef="let row" [appSoldOut]="row.isSoldOut">
-          <div class="time-cell">
-            <mat-icon>access_time</mat-icon> {{ row.showTime }}
-            <br />
-            <small>{{ row.date | date:'mediumDate' }}</small>
-          </div>
-        </td>
-      </ng-container>
-
-      <!-- Price Column -->
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef>Price</th>
-        <td mat-cell *matCellDef="let row">
-          <!-- CurrencyPipe for formatting ticket prices -->
-          {{ row.ticketPrice | currency:'INR':'symbol':'1.0-0' }}
-        </td>
-      </ng-container>
-
-      <!-- Availability Column -->
-      <ng-container matColumnDef="available">
-        <th mat-header-cell *matHeaderCellDef>Seats Available</th>
-        <td mat-cell *matCellDef="let row">
+      <div class="card-section price-info">
+        <div class="price-text">{{ row.ticketPrice | currency:'INR':'symbol':'1.0-0' }}</div>
+        <div class="availability-status">
           @if (row.isSoldOut) {
           <span class="sold-out-badge">SOLD OUT</span>
           } @else {
-          <span [ngClass]="{'low-seats': row.availableSeats < 20}">
-            {{ row.availableSeats }} / {{ row.totalSeats }}
+          <span class="seats-text" [class.low-seats]="row.availableSeats < 20">
+            {{ row.availableSeats }} / {{ row.totalSeats }} Seats
           </span>
           }
-        </td>
-      </ng-container>
+        </div>
+      </div>
 
-      <!-- Action Column -->
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef>Book</th>
-        <td mat-cell *matCellDef="let row">
-          <button mat-raised-button color="accent" [disabled]="row.isSoldOut" (click)="bookSeats(row)">
-            <mat-icon>event_seat</mat-icon>
-            {{ row.isSoldOut ? 'Sold Out' : 'Book Seats' }}
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+      <div class="card-section action-info">
+        <button mat-raised-button color="accent" class="book-btn" [disabled]="row.isSoldOut" (click)="bookSeats(row)">
+          <mat-icon>event_seat</mat-icon>
+          {{ row.isSoldOut ? 'Sold Out' : 'Book Seats' }}
+        </button>
+      </div>
+    </div>
+    }
   </div>
 
   @if (showtimeRows.length === 0) {

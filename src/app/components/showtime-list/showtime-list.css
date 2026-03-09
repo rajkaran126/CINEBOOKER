@@ -5,80 +5,146 @@
 }
 
 .page-subtitle strong {
-    color: #e94560;
-}
-
-.table-wrapper {
-    overflow-x: auto;
-    border-radius: 12px;
-}
-
-.showtime-table {
-    width: 100%;
-    min-width: 600px;
-    background: rgba(6, 14, 34, 0.85) !important;
-}
-
-.theatre-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 8px 0;
-}
-
-.theatre-cell strong {
-    color: #e8f0fe;
-    font-weight: 600;
-}
-
-.theatre-cell small {
-    color: #8899bb;
-    font-size: 0.8rem;
-}
-
-.premium-chip {
-    background: rgba(255, 214, 0, 0.10) !important;
-    color: #FFD600 !important;
-    font-size: 0.7rem !important;
-    height: 20px !important;
-    border: 1px solid rgba(255, 214, 0, 0.35) !important;
-    margin-top: 4px;
-}
-
-.time-cell {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    flex-wrap: wrap;
-    color: white;
-}
-
-.time-cell mat-icon {
-    font-size: 1rem;
-    width: 1rem;
-    height: 1rem;
     color: #00D4FF;
 }
 
-.time-cell small {
-    display: block;
-    color: #a0aec0;
-    font-size: 0.8rem;
-    width: 100%;
-    margin-top: 2px;
+/* ── Modern Card Layout (Replacing Table) ────────────────── */
+.showtimes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.showtime-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    gap: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.showtime-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), 0 0 16px rgba(0, 212, 255, 0.15);
+}
+
+.card-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+/* Theatre Info */
+.theatre-info {
+    flex: 2;
+}
+
+.theatre-name {
+    color: #e8f0fe;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.theatre-location {
+    color: #8899bb;
+    font-size: 0.95rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.premium-badge {
+    background: rgba(255, 214, 0, 0.10);
+    color: #FFD600;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 214, 0, 0.35);
+    display: inline-block;
+    width: fit-content;
+}
+
+/* Time & Price Info */
+.time-info, .price-info {
+    flex: 1;
+    min-width: 140px;
+}
+
+.time-block {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #00D4FF;
+}
+
+.time-block mat-icon {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.time-text, .price-text {
+    color: #e8f0fe;
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+
+.date-text, .seats-text {
+    color: #8899bb;
+    font-size: 0.9rem;
+}
+
+/* Availability */
+.availability-status {
+    margin-top: 0.25rem;
 }
 
 .sold-out-badge {
-    background: #c53030;
-    color: white;
+    background: rgba(255, 0, 110, 0.15);
+    color: #FF006E;
     padding: 3px 10px;
     border-radius: 12px;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 1px;
+    border: 1px solid rgba(255, 0, 110, 0.3);
 }
 
 .low-seats {
-    color: #f5a623;
+    color: #FFD600;
     font-weight: 600;
+}
+
+/* Action Button */
+.action-info {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.book-btn {
+    width: 100%;
+    max-width: 180px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .showtime-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+    
+    .action-info {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 0.5rem;
+    }
+    
+    .book-btn {
+        max-width: none;
+    }
 }

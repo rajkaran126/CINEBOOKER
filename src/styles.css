@@ -95,10 +95,11 @@ html, body {
 .success-snackbar { background: #0d4e21 !important; color: white !important; }
 
 /* ── Material Table ──────────────────────────────────────────── */
-.mat-mdc-table     { background: var(--bg-card) !important; }
+.mat-mdc-table     { background: var(--bg-card) !important; color: var(--text-primary) !important; }
 .mat-mdc-header-row { background: var(--bg-secondary) !important; }
 .mdc-data-table__header-cell { color: var(--accent) !important; font-weight: 600 !important; }
 .mat-mdc-row:hover { background: var(--bg-card-hover) !important; }
+.mat-mdc-cell, .mdc-data-table__cell { color: var(--text-primary) !important; }
 
 /* ── Reusable glass panel ────────────────────────────────────── */
 .glass-panel {

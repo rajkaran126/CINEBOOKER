@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, DatePipe, CurrencyPipe } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -15,8 +14,6 @@ import { BookingService } from '../../services/booking.service';
 import { Showtime } from '../../models/showtime.model';
 import { Theatre } from '../../models/theatre.model';
 import { Movie } from '../../models/movie.model';
-import { SoldOutDirective } from '../../directives/sold-out.directive';
-import { PremiumTheatreDirective } from '../../directives/premium-theatre.directive';
 
 interface ShowtimeRow extends Showtime {
   theatreName: string;
@@ -31,14 +28,11 @@ interface ShowtimeRow extends Showtime {
     CommonModule,
     DatePipe,
     CurrencyPipe,
-    MatTableModule,
     MatButtonModule,
     MatIconModule,
     MatCardModule,
     MatChipsModule,
-    MatProgressSpinnerModule,
-    SoldOutDirective,
-    PremiumTheatreDirective
+    MatProgressSpinnerModule
   ],
   templateUrl: './showtime-list.html',
   styleUrls: ['./showtime-list.css']
